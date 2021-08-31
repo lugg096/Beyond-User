@@ -1,0 +1,7 @@
+{
+  "name": "beyond",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

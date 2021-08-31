@@ -1,0 +1,58 @@
+<ion-content scrollY="false" class="contetInicio" #content1>
+  <div style="position:absolute;;width: 100%;height: 100%;background: #3c40c2e5;">
+ <!--    <div style="position:absolute;;width: 100%;height: 100%;"> -->
+    <div style="width: 30%;position: absolute;height: 100%;"  (click)="closeMenu()">
+      <ion-icon name="close" style="color: #F7F8FB ;font-size: 30px; margin: 35px 30px;"></ion-icon>
+    </div>
+
+    <app-menu  [dataUser]="dataUser" [user]="user"></app-menu>
+    
+  </div>
+
+
+
+  <div class="contenido1" style="position:absolute ;width: 100%;height: 100%;" #contenido1>
+    <ion-item style="--background: transparent;" lines="none">
+   <!--    <ion-item  lines="none"> -->
+      <ion-icon slot="start" name="arrow-back-outline" class="icon-nav-arrow" (click)="drawer.toggleDrawer()"
+        [ngClass]="iconVisible ? 'icon-view' : 'icon-nav-arrow'"></ion-icon>
+      <ion-title [ngClass]="iconVisible ? 'title-view' : 'title'" class="title">Lista de cuotas</ion-title>
+      <ion-icon slot="end" name="menu-outline" class="icon-nav-menu" (click)="openMenu()"></ion-icon>
+    </ion-item>
+  
+    <!--  <div style="position:absolute;width: 82%;left: 20%;">
+      <img style="margin: auto;" src="assets/images/Success _Two Color.png" alt="">
+    </div> -->
+    <div style="position:absolute;width: 82%;left: 20%;" *ngIf="deudaTotal!=null && deudaTotal!=0">
+      <img style="margin: auto;" src="assets/images/Notifications_Monochromatic (1).png" alt="">
+    </div>
+  
+    <div style="position:absolute;width: 90%;left: 10%;" *ngIf="deudaTotal==0">
+      <img style="margin: auto;" src="assets/images/Success _Two Color.png" alt="">
+    </div>
+  
+    <div style="color: #F7F8FB;line-height: 0.17; margin-left: 10%;position:relative">
+      <p style="font-size: 12px; color: #f7f8fbc2; font-weight: 520;">Unidad <span
+          style="color:#f7f8fb ;">{{user.username}}</span></p>
+  
+      <p *ngIf="deudaTotal!=null && deudaTotal!=0" style="font-size: 13px;">Pendiente de pago:</p>
+      <p *ngIf="deudaTotal==0" style="font-size: 13px;">NO tiene recibos pendientes</p>
+  
+      <p *ngIf="deudaTotal!=null && deudaTotal!=0" style="font-size: 32px; font-weight: 600;"><span
+          style="font-size: 15px;">S/.</span>{{deudaTotal | number:'1.2-2'}} </p>
+      <p *ngIf="deudaTotal==0" style="font-size: 32px; font-weight: 600;">Sin deudas </p>
+      <p style="font-size: 11px;">Participación %{{porcentaje  | number:'1.2-2'}} </p>
+  
+<div style="text-align: left;margin-top: 40px;">
+  <a href="javascript:void(0)" class="btn btn-2" (click)="goEgresos()">Egresos</a>
+</div>
+
+
+    </div>
+  
+ <!--    <div class="backdrop" tappable (click)="drawer.toggleDrawer()"></div> -->
+    <app-drawer (openStateChanged)="toggleBackdrop($event)" #drawer [listPagados]="listPagados"
+      [listPendientes]="listPendientes"></app-drawer>
+  </div>
+ 
+</ion-content>

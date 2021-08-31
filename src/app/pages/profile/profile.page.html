@@ -1,0 +1,139 @@
+<ion-content style="--background:  #5454cc;--overflow: hidden;">
+  <ion-toolbar class="toolbar" style="position: relative;">
+
+    <ion-avatar  *ngIf="!edit" slot="start" (click)="myBackButton()" style="position: absolute;padding: 7px 15px;">
+      <ion-icon name="arrow-back" class="icon-return"></ion-icon>
+    </ion-avatar>
+
+    <p class="ion-text-center title">{{ edit?'Editar datos':'Datos personales'}}   </p>
+
+    <ion-avatar  *ngIf="edit" slot="end" (click)="cancelEdit()" style="position: absolute;top: 7px;right: 15px;">
+      <ion-icon name="close" class="icon-return"></ion-icon>
+    </ion-avatar>
+
+  </ion-toolbar>
+  <div style="position: absolute;top: -1%">
+    <img style="width: 70%; display: block;margin: auto;" src="../../../assets/images/Profile analysis _Two Color.png"
+      alt="">
+  </div>
+<!--   <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="ion-margin">
+    <ion-fab-button *ngIf="!edit" style="--background:  #5454cc;--color:#fff;" (click)="editar()">
+      <ion-icon name="pencil-outline" style="font-size: 22px;"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-button  *ngIf="edit" style="--background:  #5454cc;--color:#fff;" (click)="save()">
+      <ion-icon name="save" style="font-size: 20px;"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
+
+
+  <div class="drawer" #drawer>
+    <div style="border-radius: 13px;padding-top: 5%;padding-left: 5px;padding-right: 20px;" *ngIf="!edit">
+      <ion-item style="--background:transparent ;border-radius: 30px 30px 0 0;">
+        <ion-avatar slot="start" class="ion-no-margin">
+          <ion-icon name="person" style="font-size: 21px; margin-top:10px;color:#5454cce7"></ion-icon>
+        </ion-avatar>
+        <ion-label class="p-0">
+          <ion-label class="datos-campo">Nombre</ion-label>
+          <ion-label class="datos-label">{{dataUser.name}}</ion-label>
+        </ion-label>
+
+      </ion-item>
+
+
+
+      <ion-item style="--background: transparent;">
+        <ion-avatar slot="start" class="ion-no-margin">
+
+          <ion-icon name="mail" style="font-size: 20px; margin-top:10px;color:#5454cce7"></ion-icon>
+        </ion-avatar>
+        <ion-label class="p-0">
+          <ion-label class="datos-campo">Email</ion-label>
+          <ion-label class="datos-label">{{dataUser.email}}</ion-label>
+        </ion-label>
+      </ion-item>
+
+
+      <ion-item style="--background: transparent;">
+        <ion-avatar slot="start" class="ion-no-margin">
+          <ion-icon name="call" style="font-size: 20px; margin-top:10px;color:#5454cce7"></ion-icon>
+        </ion-avatar>
+        <ion-label class="p-0">
+          <ion-label class="datos-campo">Teléfono</ion-label>
+          <ion-label class="datos-label">{{dataUser.phone}}</ion-label>
+        </ion-label>
+      </ion-item>
+
+      <ion-item style="--background: transparent;" lines="none">
+        <ion-avatar slot="start" class="ion-no-margin">
+          <ion-icon name="business" style="font-size: 20px; margin-top:10px;color:#5454cce7"></ion-icon>
+        </ion-avatar>
+        <ion-label class="p-0">
+          <ion-label class="datos-campo">Propiedad</ion-label>
+          <ion-label class="datos-label">{{user.username}}</ion-label>
+        </ion-label>
+      </ion-item>
+
+
+    </div>
+
+
+    <!-- EDIT -->
+    <div style="border-radius: 13px;padding-top: 5%;padding-left: 5px;padding: 20px 20px 10px 10px" *ngIf="edit">
+      <form [formGroup]="profileForm">
+
+        <ion-item style="--background:transparent ;border-radius: 30px 30px 0 0;">
+          <ion-label class="datos-campo" style="position:absolute;top: 4px;">
+            <ion-icon name="person" style="color:#5454cce7"></ion-icon> Nombre
+          </ion-label>
+          <ion-input formControlName="name" placeholder="Nombre de usuario" style="color: #666666;" style="margin-top: 25px;">
+          </ion-input>
+        </ion-item>
+        <p style="font-size: 12px;color: #eb445a;text-align: left;margin-top: 7px ;margin-left:20px;"
+          *ngIf="!profileForm.controls.name.valid && !profileForm.controls.name.pending && (profileForm.controls.name.dirty || submitAttempt)">
+          Nombre es requerido
+        </p>
+
+
+        <ion-item style="--background:transparent ;">
+          <ion-label class="datos-campo" style="position:absolute;top: 4px;">
+            <ion-icon name="mail" style="color:#5454cce7"></ion-icon> Email
+          </ion-label>
+          <ion-input formControlName="email" placeholder="Email de usuario" style="color: #666666;"
+            style="margin-top: 25px;"></ion-input>
+        </ion-item>
+        <p style="font-size: 12px;color: #eb445a;text-align: left;margin-top: 7px ;margin-left:20px;"
+          *ngIf="!profileForm.controls.email.valid && !profileForm.controls.email.pending && (profileForm.controls.email.dirty || submitAttempt)">
+          Email es requerido
+        </p>
+
+
+        <ion-item style="--background:transparent ;border-radius: 30px 30px 0 0;">
+          <ion-label class="datos-campo" style="position:absolute;top: 4px;">
+            <ion-icon name="mail" style="color:#5454cce7"></ion-icon> Teléfono
+          </ion-label>
+          <ion-input formControlName="phone" placeholder="Teléfono de usuario" style="color: #666666;" style="margin-top: 25px;">
+          </ion-input>
+        </ion-item>
+        <p style="font-size: 12px;color: #eb445a;text-align: left;margin-top: 7px ;margin-left:20px;"
+          *ngIf="!profileForm.controls.phone.valid && !profileForm.controls.phone.pending && (profileForm.controls.phone.dirty || submitAttempt)">
+          Telefono es requerido
+        </p>
+
+        <ion-item style="--background:transparent ;border-radius: 30px 30px 0 0;">
+          <ion-label class="datos-campo" style="position:absolute;top: 4px;">
+            <ion-icon name="business" style="color:#5454cce7"></ion-icon> Propiedad
+          </ion-label>
+          <ion-input formControlName="propiedad" placeholder="1111A" style="color: #666666;"
+            style="margin-top: 25px;"></ion-input>
+        </ion-item>
+        <p style="font-size: 12px;color: #eb445a;text-align: left;margin-top: 7px ;margin-left:20px;"
+          *ngIf="!profileForm.controls.propiedad.valid && !profileForm.controls.propiedad.pending && (profileForm.controls.propiedad.dirty || submitAttempt)">
+          Propiedad es requerido
+        </p>
+      </form>
+
+    </div>
+  </div>
+
+</ion-content>

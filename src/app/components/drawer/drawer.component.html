@@ -1,0 +1,74 @@
+<div class="drawer" #drawer>
+  <div class="ion-text-center">
+    <ion-button fill="clear" expand="full" (click)="toggleDrawer()">
+      <div class="drawer-pull"></div>
+    </ion-button>
+  </div>
+
+
+  <ion-content style="--background:trasnsparent ;">
+    <div
+      style=" position: fixed;z-index: 1000;  background: transparent; width: 100%;padding: 0px 12px;text-align: center;">
+      <a class="button-filter select" (click)="filter('PEND')" #pendientes>Pendientes</a>
+      <a class="button-filter" (click)="filter('PAGA')" #pagados>Pagados</a>
+    </div>
+
+    <ion-refresher slot="fixed" (ionRefresh)="refreshList($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <div style="padding: 10px 10px 45% 10px; margin-top: 40px;">
+
+      <ng-container *ngIf="filtro == 'PAGA'">
+        <ion-card *ngFor="let item of listPagados" button="true" (click)="verDoc(item)" 
+          style="--background: white;border-radius: 15px;margin-top: 10px ;padding: 15px 20px;box-shadow: var(--shadow-black-100);"
+          class=" recibo">
+          <p style="font-weight: 520;font-size: 16px;margin: 7px auto;">{{item.concepto}}</p>
+          <div class="row_container recibo" style="line-height: 0.15">
+            <div>
+              <p style="font-size: 11px; color: #8b898f; font-weight: 500;">Fecha recibo</p>
+              <!--     <p style="font-size: 15px">AGO 18</p> -->
+              <p style="font-size: 15px">{{item.mes}} {{item.registro | date:'d, y'}}</p>
+            </div>
+            <div style="text-align: right;">
+              <p style="font-size: 11px; color: #8b898f; font-weight: 500;">Monto</p>
+              <p style="font-size: 15px; font-weight: 520; color: #e0533a;"><span style="font-size: 10px;">S/.</span>
+                {{item.original | number:'1.2-2'}}
+              </p>
+            </div>
+          </div>
+        </ion-card>
+      </ng-container>
+
+
+      <ng-container *ngIf="filtro == 'PEND'">
+            <ion-card *ngFor="let item of listPendientes" button="true"  (click)="verDoc(item)"
+        style="--background: white;border-radius: 15px;margin-top: 10px ;padding: 15px 20px;box-shadow: var(--shadow-black-100);"
+        class=" recibo">
+        <p style="font-weight: 520;font-size: 16px;margin: 7px auto;">{{item.concepto}}</p>
+        <div class="row_container recibo" style="line-height: 0.15">
+          <div>
+            <p style="font-size: 11px; color: #8b898f; font-weight: 500;">Fecha recibo</p>
+
+            <p style="font-size: 15px">{{item.mes}} {{item.registro | date:'d, y'}}</p>
+          </div>
+          <div style="text-align: right;">
+            <p style="font-size: 11px; color: #8b898f; font-weight: 500;">Monto</p>
+            <p style="font-size: 15px; font-weight: 520; color: #e0533a;"><span style="font-size: 10px;">S/.</span>
+              {{item.original | number:'1.2-2'}}
+            </p>
+          </div>
+        </div>
+      </ion-card>
+
+      <ion-card *ngIf="listPendientes.length==0" button="true" 
+          style="--background: white;border-radius: 15px;margin-top: 10px ;padding: 15px 20px;box-shadow: var(--shadow-black-100);"
+          class=" recibo">
+          <p style="font-weight: 520;font-size: 16px;margin: 7px auto;">No tiene recibos pendientes</p>
+        </ion-card>
+    </ng-container>
+    </div>
+
+  </ion-content>
+
+</div>

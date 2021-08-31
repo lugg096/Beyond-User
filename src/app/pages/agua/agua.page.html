@@ -1,0 +1,44 @@
+<ion-content>
+  <div
+    style="color: #fff;background: linear-gradient(90deg, #3c40c2 10%, rgba(92, 108, 236, 1) 100%); margin-bottom: 0;height: 55px;">
+    <!-- HEADER -->
+    <ion-icon slot="start" name="arrow-back" class="icon-nav-arrow "
+      style=" position: absolute;z-index: 10; padding: 20px;padding-top: 15px;" (click)="goInicio()">
+    </ion-icon>
+    <ion-item style="--background: transparent;margin-bottom: 0;" lines="none">
+      <ion-title class="title">Consumo de agua</ion-title>
+    </ion-item>
+  </div>
+  <div style="padding: 20px;">
+    <p style="font-weight: 520;font-size: 18px;margin: 7px auto;line-height: 1.2;color:  #616161;">Gráfico de consumo
+    </p>
+    <div class="chart-container">
+      <canvas id="canva"></canvas>
+    </div>
+  </div>
+
+
+  <ion-card *ngFor="let item of listData" button="true"
+    style="--background: white;border-radius: 15px;margin-top: 10px ;padding: 15px 30px;box-shadow: var(--shadow-black-100);"
+    class="recibo">
+
+
+    <div class="row_container recibo" style="line-height: 0.15">
+      <div style="width:50%;">
+        <p style="font-weight: 520;font-size: 16px;margin: 7px auto;line-height: 1.2;"> {{item.mes}} {{item.annio}}
+          <br> <span style="font-weight: 500;font-size: 11px;margin: 7px auto;">Consumo <span
+              style="color: var(--main-color);">{{item.consumo | number:'1.1-2'}}%</span> </span>
+        </p>
+      </div>
+
+      <div style="width: 50%;text-align: right;">
+        <p style="font-size: 11px; color: #8b898f; font-weight: 500;">Monto</p>
+          <p style="font-size: 15px; font-weight: 520; color: #e0533a;"><span style="font-size: 10px;">S/.</span>
+            {{item.monto | number:'1.2-2'}}
+          </p>
+      </div>
+    </div>
+  </ion-card>
+
+
+</ion-content>

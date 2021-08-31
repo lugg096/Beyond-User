@@ -1,0 +1,127 @@
+<div style="width: 60%;position: relative; left: 38%;height: 100%;">
+  <div style="margin-top: 16%;">
+    <p style="color: #F7F8FB; font-size: 23px;font-weight: 500; line-height: 1;margin-bottom: 10px;">{{dataUser.name}}
+    </p>
+    <p style="font-size: 14px;font-weight: 500;color: #a8a9eb; margin-top: 0;">Unidad inmobiliaria
+      {{user.username}} </p>
+  </div>
+  <div style="color: #F7F8FB;line-height: 2.5;">
+    <ul style="padding-left: 12px;">
+      <li style="list-style: none;">
+        <a href="javascript:void(0)" style="text-decoration: none; color:#F7F8FB; font-size: 12px;" (click)="goPerfil()">
+          <ion-icon name="shield-checkmark" style="font-size: 22px;transform: translateY(6px);margin-right: 7px;">
+          </ion-icon> Datos personales
+        </a>
+
+      </li>
+      <li style="list-style: none;">
+        <a href="javascript:void(0)" style="text-decoration: none; color:#F7F8FB; font-size: 12px;" (click)="goPropiedades()">
+          <ion-icon name="business" style="font-size: 22px;transform: translateY(6px);margin-right: 7px;">
+          </ion-icon> Mis propiedades
+        </a>
+
+      </li>
+      <li style="list-style: none;">
+  
+        <a href="javascript:void(0)" style="text-decoration: none; color:#F7F8FB; font-size: 12px;"  (click)="getAgua()">
+          <ion-icon name="water" style="font-size: 22px;transform: translateY(6px);margin-right: 7px;">
+          </ion-icon>Mi consumo de agua
+        </a>
+      </li>
+
+      <p style="color: #a8a9eb;font-size: 14px;margin: 0;margin-top: 15px;">Reportes</p>
+
+      <li style="list-style: none;">
+        <ion-item style="display:none">
+          <ion-datetime displayFormat="MMMM YYYY" min="2019-01-01"  (ionChange)="getAguaCondominio($event)" #inputAguaCond
+            monthNames="Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre">
+          </ion-datetime>
+        </ion-item>
+
+        <a href="javascript:void(0)" style="text-decoration: none; color:#F7F8FB; font-size: 12px;"  (click)="inputAguaCond.open()">
+          <ion-icon name="water" style="font-size: 22px;transform: translateY(6px);margin-right: 7px;">
+          </ion-icon>Consumo de agua
+        </a>
+      </li>
+
+      <li style="list-style: none;">
+        <ion-item style="display:none">
+          <ion-datetime displayFormat="MMMM YYYY" min="2019-01-01"  (ionChange)="getUnidades($event)" #inputUnidades
+            monthNames="Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre">
+          </ion-datetime>
+        </ion-item>
+
+        <a href="javascript:void(0)" style="text-decoration: none; color:#F7F8FB; font-size: 12px;"  (click)="inputUnidades.open()">
+          <ion-icon name="home" style="font-size: 22px;transform: translateY(6px);margin-right: 7px;">
+          </ion-icon> Unidades inmobiliarias
+        </a>
+
+      </li>
+      <li style="list-style: none;" >
+        <ion-item style="display:none">
+          <ion-datetime displayFormat="MMMM YYYY" min="2019-01-01"  (ionChange)="getBalane($event)" #fileInput
+            monthNames="Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre">
+          </ion-datetime>
+        </ion-item>
+
+        <a href="javascript:void(0)" style="text-decoration: none; color:#F7F8FB; font-size: 12px;" (click)="fileInput.open()">
+          <ion-icon name="calculator" style="font-size: 22px;transform: translateY(6px);margin-right: 7px;">
+          </ion-icon> Balance general
+        </a>
+      </li>
+
+      <li style="list-style: none;" >
+        <ion-item style="display:none">
+          <ion-datetime displayFormat="MMMM YYYY" min="2019-01-01"  (ionChange)="getPagar($event)" #inputPagar
+            monthNames="Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre">
+          </ion-datetime>
+        </ion-item>
+
+        <a href="javascript:void(0)" style="text-decoration: none; color:#F7F8FB; font-size: 12px;" (click)="inputPagar.open()">
+          <ion-icon name="trending-up-outline" style="font-size: 22px;transform: translateY(6px);margin-right: 7px;">
+          </ion-icon> Cuentas por pagar
+        </a>
+      </li>
+
+      <li style="list-style: none;" >
+        <ion-item style="display:none">
+          <ion-datetime displayFormat="MMMM YYYY" min="2019-01-01"  (ionChange)="getCobrar($event)" #inputCobrar
+            monthNames="Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre">
+          </ion-datetime>
+        </ion-item>
+        <a href="javascript:void(0)" style="text-decoration: none; color:#F7F8FB; font-size: 12px;" (click)="inputCobrar.open()">
+          <ion-icon name="cash" style="font-size: 22px;transform: translateY(6px);margin-right: 7px;">
+          </ion-icon> Cuentas por cobrar
+        </a>
+      </li>
+      <li style="list-style: none;">
+        <ion-item style="display:none">
+          <ion-datetime displayFormat="MMMM YYYY" min="2019-01-01"  (ionChange)="getInhaviles($event)" #fileInput2
+            monthNames="Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre">
+          </ion-datetime>
+        </ion-item>
+        <a href="javascript:void(0)" style="text-decoration: none; color:#F7F8FB; font-size: 12px;" (click)="fileInput2.open()">
+          <ion-icon name="close-circle" style="font-size: 22px;transform: translateY(6px);margin-right: 7px;">
+         <!--    <ion-icon name="close-circle-outline"></ion-icon> -->
+          </ion-icon> Inhábiles
+        </a>
+      </li>
+
+  <!--     <ion-picker></ion-picker>  -->
+    </ul>
+  </div>
+
+  <div style="color: #F7F8FB;position: absolute;bottom: 10%;">
+    <ul style="padding-left: 12px;">
+      <li style="list-style: none;" (click)="cerrarSesion()">
+        <a href="javascript:void(0)" style="text-decoration: none; color:#f7f8fb88; font-size: 12px;">
+          <ion-icon name="arrow-back-circle" style="font-size: 22px;transform: translateY(6px);margin-right: 7px;">
+          </ion-icon> Cerrar sesión
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+
+</div>

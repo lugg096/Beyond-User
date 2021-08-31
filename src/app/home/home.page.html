@@ -1,0 +1,131 @@
+<ion-content [fullscreen]="true" class="contetLogin">
+
+
+  <ion-slides #slidesPadre pager="false" [options]="slideOptsOnboarding" style="height: 100%;">
+
+    <ion-slide class="ion-no-padding">
+
+      <div style=" padding-bottom: 5px;  height: 100%; width: 100%; color: #2F3435;">
+
+
+
+        <ion-slides #slidesDatos class="slide-identificacion" pager="true" [options]="slideOpts"
+          (ionSlideNextEnd)="verSlide()" (ionSlidePrevEnd)="verSlide()" (ionSlideReachEnd)="endSlide()">
+
+          <ion-slide>
+            <div>
+              <img style="width: 95%; display: block;margin: auto"
+                src="../../../assets/images/Financial Analyst_Two Color.png">
+            </div>
+          </ion-slide>
+
+          <ion-slide>
+            <div style="margin-left: 5%;">
+              <img style="width: 100%; display: block;margin:auto"
+                src="../../../assets/images/Report analysis _Two Color.png">
+            </div>
+          </ion-slide>
+
+          <ion-slide>
+            <div style="margin-left: 5%;">
+              <img style="width: 100%; display: block;" src="../../../assets/images/Entrepreneurs_Two Color (1).png">
+            </div>
+          </ion-slide>
+
+        </ion-slides>
+
+
+
+        <div class="textSlide" [ngClass]="indexSlide==0 ? 'textSlide' : 'textSlideNone'">
+          <p class="text-title"> Maneja tus recibos </p>
+          <p class="text-info">Administra todos lo recibos tanto pagados como pendientes </p>
+        </div>
+
+        <div class="textSlide" [ngClass]="indexSlide==1 ? 'textSlide' : 'textSlideNone'">
+          <p class="text-title"> Reporte de balances</p>
+          <p class="text-info">Visualiza los diferentes reportes de pagos de sus propiedades por cada mes
+          </p>
+        </div>
+
+        <div class="textSlide" [ngClass]="indexSlide==2 ? 'textSlide' : 'textSlideNone'">
+          <p class="text-title"> Administrar propiedades</p>
+          <p class="text-info">Visualiza datos imporntantes y actualizados de sus propiedades</p>
+        </div>
+
+
+
+        <div style="text-align: center;margin-top:40%;">
+          <a href="javascript:void(0)" class="btn btn-2" (click)="nextSlidePadre()">Iniciar sesión</a>
+          <p style="font-size:10px; margin: 40px 25px; color: #999999;">Si no tiene cuenta para iniciar sesión
+            comunicarce con el área administrativa de su organización </p>
+        </div>
+
+
+      </div>
+    </ion-slide>
+
+    <ion-slide class="ion-no-padding">
+      <div style="height: 100%;width: 100%;; color: #666666;padding: 23px;">
+        <div style="line-height: 0.2;margin-top: 20%;">
+          <p style="font-size: 22px;font-weight: 600;text-align: left;color: #666666;">Bienvenido a Beyond</p>
+          <p style="font-size: 13px;font-weight: 600;text-align: left;color: #999999;">Inicia sesión para cotinuar</p>
+        </div>
+        <form [formGroup]="loginForm">
+          <ion-item style="margin-top: 20%;">
+            <ion-label position="stacked" style="--color:#999999">Identidad propiedad</ion-label>
+            <ion-input formControlName="username" placeholder="111A" style="color: #666666;"></ion-input>
+          </ion-item>
+
+          <p style="font-size: 11px;color: #eb445a;text-align: left;margin-top: 5px;"
+            *ngIf="!loginForm.controls.username.valid && !loginForm.controls.username.pending && (loginForm.controls.username.dirty || submitAttempt)">
+          Número de departameto y torre, ejemplo: 999A
+        </p>
+
+          <ion-item style="margin-top:18px">
+            <ion-label position="stacked" style="--color:#999999">Contraseña</ion-label>
+            <ion-input placeholder="Contraseña" [type]="tipo" formControlName="pass" style="color: #666666;">
+            </ion-input>
+            <span style="position: absolute;right: 10px; bottom: 5px;z-index: 10;" (click)="mostrar()">
+              <ion-icon name="eye" *ngIf="viewPass" style="font-size: 23px;color: var(--main-color);"></ion-icon>
+              <ion-icon name="eye-off" *ngIf="!viewPass" style="font-size: 23px;color: var(--main-color)"></ion-icon>
+            </span>
+          </ion-item>
+          <p style="font-size: 11px;color: #eb445a;text-align: left;margin-top: 5px;"
+          *ngIf="!loginForm.controls.pass.valid && (loginForm.controls.pass.dirty || submitAttempt)">
+        Contraseña requerida
+      </p>
+        </form>
+
+        <a href="javascript:void(0)" class="btn btn-2" (click)="login()" style="position: relative;top: 50px;">Iniciar
+          sesión</a>
+        <p> <a href="javascript:void(0)" class="cancel" (click)="backSlidePadre()">Cancelar</a></p>
+
+
+
+
+      </div>
+
+
+    </ion-slide>
+
+    <!-- LOAD -->
+    <ion-slide *ngIf="load">
+      <div style="height: 100%;width: 100%; background: var(--main-color);">
+        <div class="svg hide" id="svg">
+          <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" ></ng-lottie>
+        </div>
+        <p
+          style="text-align: center; font-size: 18px;font-weight: 600; margin-top: 30%; color: white;line-height: 1.2;">
+          Espere
+          porfavor <br>
+          <span style="font-size: 12px;font-weight: 500">Validando datos</span>
+        </p>
+        <div style="text-align: center">
+          <a href="javascript:void(0)" class="cancel" style="color:white ;" (click)="backSlidePadre()">Cancelar
+            proceso</a>
+        </div>
+      </div>
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>

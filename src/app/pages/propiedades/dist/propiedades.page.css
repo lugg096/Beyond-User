@@ -1,0 +1,33 @@
+.icon-nav-arrow {
+  color: #F7F8FB;
+  font-size: 21px;
+  padding: 15px 20px;
+}
+
+.title {
+  text-align: center;
+  color: #F7F8FB;
+  transition: 0.3s linear all;
+}
+
+.row_container {
+  display: flex;
+}
+
+.badge {
+  background: var(--main-color);
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: 500;
+  margin-left: 3px;
+}
+
+.badge-suc {
+  background: #09d69c;
+}
+
+.badge-dan {
+  background: #dd3333;
+}

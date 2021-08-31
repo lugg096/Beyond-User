@@ -1,0 +1,72 @@
+<ion-content>
+
+
+  <div
+    style="color: #fff;background: linear-gradient(90deg, #3c40c2 10%, rgba(92, 108, 236, 1) 100%); margin-bottom: 0;height: 55px;">
+    <!-- HEADER -->
+    <ion-icon slot="start" name="arrow-back" class="icon-nav-arrow "
+      style=" position: absolute;z-index: 10; padding: 20px;padding-top: 15px;" (click)="goInicio()">
+    </ion-icon>
+    <ion-item style="--background: transparent;margin-bottom: 0;" lines="none">
+      <ion-title class="title">Egresos</ion-title>
+    </ion-item>
+  </div>
+  <!--   <div (click)="getDate()">
+    <p>{{date}}</p>
+    
+  </div> -->
+  <ion-item>
+    <ion-label position="stacked">Fecha de egresos</ion-label>
+    <ion-datetime displayFormat="MMMM YYYY" min="2019-01-01" [value]="date" (ionChange)="getDate($event)"
+      monthNames="Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre">
+    </ion-datetime>
+
+    <span style="position: absolute;right: 10px; bottom: 5px;z-index: 10; background: #fff;border-radius: 100%;">
+      <ion-icon name="calendar-outline" style="font-size: 23px;color: #8b898f; transform: translateY(2px);">
+      </ion-icon>
+    </span>
+    
+  </ion-item>
+
+
+  <ng-container>
+    <ion-card *ngFor="let item of listEgresos" button="true" (click)="verData(item)"
+      style="--background: white;border-radius: 15px;margin-top: 10px ;padding: 15px 20px;box-shadow: var(--shadow-black-100);"
+      class="recibo">
+      <p style="font-weight: 520;font-size: 16px;margin: 7px auto;line-height: 1.2;">{{item.titulo}}
+        <span class="badge" [ngClass]="item.estado=='Pagado' ? 'badge-suc' : 'badge-dan'">{{item.estado}}</span>
+        <!-- <span
+          style="font-weight: 500;font-size: 11px;margin: 7px auto;">- {{item.RAZON_SOCIAL}} </span> -->
+      </p>
+      <!--     <p style="font-weight: 500;font-size: 11px;margin: 7px auto;">{{item.RAZON_SOCIAL}}</p>
+ -->
+
+      <div class="row_container recibo" style="line-height: 0.15">
+        <!--   <div style="width: 30%;">
+          <p style="font-size: 11px; color: #8b898f; font-weight: 500;">Fecha pago</p>
+          <p style="font-size: 15px">{{item.fecha_pago }}</p>
+        </div> -->
+        <div style="width: 50%;">
+          <p style="font-size: 11px; color: #8b898f; font-weight: 500;">Fecha pago</p>
+          <p style="font-size: 15px">{{item.fecha_pago }}</p>
+        </div>
+        <div style="width: 50%;text-align: right;">
+          <p style="font-size: 11px; color: #8b898f; font-weight: 500;">Monto</p>
+          <p style="font-size: 15px; font-weight: 520; color: #e0533a;"><span style="font-size: 10px;">S/.</span>
+            {{item.monto | number:'1.2-2'}}
+          </p>
+        </div>
+      </div>
+    </ion-card>
+  </ng-container>
+
+
+ <!--  <ion-card *ngIf="listEgresos.length==0" button="true"
+  style="--background: white;border-radius: 15px;margin-top: 10px ;padding: 15px 20px;box-shadow: var(--shadow-black-100);"
+  class="recibo">
+  <p style="font-weight: 520;font-size: 16px;margin: 7px auto;line-height: 1.2;">No se encontro ningún registro
+  </p>
+
+</ion-card> -->
+
+</ion-content>
