@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { DrawerComponent } from './drawer/drawer.component';
 import { MenuComponent } from './menu/menu.component';
 import { DataEgresoComponent } from './data-egreso/data-egreso.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DataEgresoComponent } from './data-egreso/data-egreso.component';
   ],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    PipesModule
   ]
 })
 export class ComponentsModule { }

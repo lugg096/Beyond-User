@@ -4,7 +4,8 @@ import { ApiServiceService } from 'src/app/services/api-service.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { DOCUMENT } from '@angular/common';
 import { DataService } from 'src/app/services/data-service.service';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx'
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+
 @Component({
   selector: 'app-drawer',
   templateUrl: './drawer.component.html',
@@ -19,23 +20,23 @@ export class DrawerComponent implements AfterViewInit {
 
   isOpen = false;
   openHeight = 0;
-  filtro="PEND";
-  user:any;
+  filtro = "PEND";
+  user: any;
   @Input() listPagados: any = [];
   @Input() listPendientes: any = [];
 
   constructor(
     private iab: InAppBrowser,
-    private renderer: Renderer2, 
-    private plt: Platform, 
+    private renderer: Renderer2,
+    private plt: Platform,
     private _storage: StorageService,
     private gestureCtrl: GestureController,
     private _apiService: ApiServiceService,
     private _data: DataService,
     @Inject(DOCUMENT) private document: Document) { }
 
-  ngOnInit(){
-    
+  ngOnInit() {
+
   }
 
   async ngAfterViewInit() {
@@ -83,28 +84,31 @@ export class DrawerComponent implements AfterViewInit {
   }
 
   filter(filter) {
-    this.filtro=filter;
+    this.filtro = filter;
     if (filter == 'PEND') {
 
-     /*  this.listPagos = this.listPendientes; */
+      /*  this.listPagos = this.listPendientes; */
       this.renderer.removeClass(this.pagados.nativeElement, 'select');
       this.renderer.addClass(this.pendientes.nativeElement, 'select');
     } else {
-  /*     this.listPagos = this.listPagados; */
+      /*     this.listPagos = this.listPagados; */
       this.renderer.removeClass(this.pendientes.nativeElement, 'select');
       this.renderer.addClass(this.pagados.nativeElement, 'select');
 
     }
   }
-  
-  refreshList(event){
+
+  refreshList(event) {
     this._data.changeMessage(event);
   }
 
-  verDoc(doc){
-    console.log('doc',doc);
-    this._apiService.verDoc(this.user.username,doc.annio,doc.mes).subscribe((res:any)=>{
-    window.open(res.file, "_blank");
+  verDoc(doc) {
+    this._apiService.verDoc(this.user.username, doc.annio, doc.mes).subscribe((res: any) => {
+      /*  window.open(res.file, "_blank"); */
+      let linkUrl = document.createElement("a");
+      linkUrl.href = res.file;
+      linkUrl.setAttribute('target', '_blank');
+      linkUrl.click();
     });
   }
 

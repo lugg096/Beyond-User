@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StorageService } from './services/storage.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx'
+import { PipesModule } from './pipes/pipes.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -21,7 +22,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx'
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    PipesModule
   ],
   providers: [
     StatusBar,
