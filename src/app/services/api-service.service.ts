@@ -25,7 +25,8 @@ export class ApiServiceService {
   verDoc(username, anio, mes) {
     const number = username.substring(0, username.length - 1);
     const torre = username.substring(username.length - 1, username.length);
-    let URI = env.URL_API + "recibo/index.php?operation=print&annio=" + anio + "&mes=" + mes + "&numero=" + number + "&torre=" + torre;
+    let URI = env.URL_API + "recibo/?operation=print&annio=" + anio + "&mes=" + mes + "&numero=" + number + "&torre=" + torre;
+    console.log('URL',URI)
     return this.http.get<any[]>(URI);
 
   }

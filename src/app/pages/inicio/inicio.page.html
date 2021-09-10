@@ -16,7 +16,7 @@
    <!--    <ion-item  lines="none"> -->
       <ion-icon slot="start" name="arrow-back-outline" class="icon-nav-arrow" (click)="drawer.toggleDrawer()"
         [ngClass]="iconVisible ? 'icon-view' : 'icon-nav-arrow'"></ion-icon>
-      <ion-title [ngClass]="iconVisible ? 'title-view' : 'title'" class="title">Lista de cuotas</ion-title>
+      <div [ngClass]="iconVisible ? 'title-view' : 'title'" class="title" style="width: 100%;">Lista de cuotas</div>
       <ion-icon slot="end" name="menu-outline" class="icon-nav-menu" (click)="openMenu()"></ion-icon>
     </ion-item>
   

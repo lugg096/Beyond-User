@@ -6,6 +6,7 @@ import { DOCUMENT } from '@angular/common';
 import { DataService } from 'src/app/services/data-service.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
+
 @Component({
   selector: 'app-drawer',
   templateUrl: './drawer.component.html',
@@ -22,8 +23,10 @@ export class DrawerComponent implements AfterViewInit {
   openHeight = 0;
   filtro = "PEND";
   user: any;
+  platform: any;
   @Input() listPagados: any = [];
   @Input() listPendientes: any = [];
+
 
   constructor(
     private iab: InAppBrowser,
@@ -36,7 +39,15 @@ export class DrawerComponent implements AfterViewInit {
     @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit() {
+    this.getPlatform();
+  }
 
+  getPlatform() {
+    console.log('MOSTRAR DEV', this.plt.platforms());
+    let res_plt = this.plt.platforms();
+    let array = res_plt.filter(r => r == 'ios') || [];
+    if (array.length > 0) this.platform = 'ios';
+    else this.platform = 'android';
   }
 
   async ngAfterViewInit() {
@@ -102,14 +113,35 @@ export class DrawerComponent implements AfterViewInit {
     this._data.changeMessage(event);
   }
 
-  verDoc(doc) {
-    this._apiService.verDoc(this.user.username, doc.annio, doc.mes).subscribe((res: any) => {
-      /*  window.open(res.file, "_blank"); */
-      let linkUrl = document.createElement("a");
-      linkUrl.href = res.file;
-      linkUrl.setAttribute('target', '_blank');
-      linkUrl.click();
-    });
+  async verDoc(doc, i) {
+
+    if( this.platform == 'ios'){
+      if (this.filtro == 'PEND') {
+        console.log('this.listPendientes[i]', this.listPendientes[i])
+        if (this.listPendientes[i].doc_gen) window.open(this.listPendientes[i].doc_gen, "_blank");
+        else {
+          this._apiService.verDoc(this.user.username, doc.annio, doc.mes).subscribe((res: any) => {
+            console.log("MOSTRAR RESPUESTA ", res);
+            this.listPendientes[i].doc_gen = res.file;
+          });
+        }
+      } else {
+        if (this.listPagados[i].doc_gen) window.open(this.listPagados[i].doc_gen, "_blank");
+        else {
+          this._apiService.verDoc(this.user.username, doc.annio, doc.mes).subscribe((res: any) => {
+            console.log("MOSTRAR RESPUESTA ", res.file);
+            this.listPagados[i].doc_gen = res.file;
+          });
+        }
+      }
+    }else{
+      this._apiService.verDoc(this.user.username, doc.annio, doc.mes).subscribe((res: any) => {
+        window.open(res.file, "_blank");
+      });
+    }
+
+   
+
   }
 
 }

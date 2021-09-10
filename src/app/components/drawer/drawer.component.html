@@ -24,10 +24,12 @@
     <div style="padding: 10px 10px 45% 10px; margin-top: 0px;">
 
       <ng-container *ngIf="filtro == 'PAGA'">
-        <ion-card *ngFor="let item of listPagados" button="true" (click)="verDoc(item)" 
+        <ion-card *ngFor="let item of listPagados;index as i" button="true" (click)="verDoc(item,i)" 
           style="--background: white;border-radius: 15px;margin-top: 10px ;padding: 15px 20px;box-shadow: var(--shadow-black-100);"
           class=" recibo">
-          <p style="font-weight: 520;font-size: 16px;margin: 7px auto;">{{item.concepto}}</p>
+          <p style="font-weight: 520;font-size: 16px;margin: 7px auto;">{{item.concepto}} 
+            <span class="badge badge-suc" *ngIf="item.doc_gen">Ver doc.</span></p>
+
           <div class="row_container recibo" style="line-height: 0.15">
             <div>
               <p style="font-size: 11px; color: #8b898f; font-weight: 500;">Fecha recibo</p>
@@ -41,15 +43,17 @@
               </p>
             </div>
           </div>
+
         </ion-card>
       </ng-container>
 
 
       <ng-container *ngIf="filtro == 'PEND'">
-            <ion-card *ngFor="let item of listPendientes" button="true"  (click)="verDoc(item)"
+            <ion-card *ngFor="let item of listPendientes;index as i" button="true"  (click)="verDoc(item,i)"
         style="--background: white;border-radius: 15px;margin-top: 10px ;padding: 15px 20px;box-shadow: var(--shadow-black-100);"
         class=" recibo">
-        <p style="font-weight: 520;font-size: 16px;margin: 7px auto;">{{item.concepto }}</p>
+        <p style="font-weight: 520;font-size: 16px;margin: 7px auto;">{{item.concepto }}
+          <span class="badge badge-suc" *ngIf="item.doc_gen && platform == 'ios'">Ver doc.</span></p>
         <div class="row_container recibo" style="line-height: 0.15">
           <div>
             <p style="font-size: 11px; color: #8b898f; font-weight: 500;">Fecha recibo</p>
